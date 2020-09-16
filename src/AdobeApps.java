@@ -233,7 +233,7 @@ public class AdobeApps {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-				    	}}, 20, TimeUnit.SECONDS);
+				    	}}, 40, TimeUnit.SECONDS);
 				    
 				    while (!countdown.isDone()) {
 			            try {
