@@ -163,7 +163,7 @@ public class AdobeApps {
 		JTextPane txtpnEstePequeoPrograma = new JTextPane();
 		txtpnEstePequeoPrograma.setBackground(SystemColor.control);
 		txtpnEstePequeoPrograma.setEditable(false);
-		txtpnEstePequeoPrograma.setText("Este peque\u00F1o programa inicia todas las aplicaciones Adobe instaladas para que IT SEAT no las desinstale. Al pulsar en el bot\u00F3n Iniciar, se iniciar\u00E1n las aplicaciones y, pasados unos segundos, se cerrar\u00E1 de forma autom\u00E1tica.\r\n\nPulsa el bot\u00F3n Iniciar para empezar.");
+		txtpnEstePequeoPrograma.setText("Este peque\u00F1o programa inicia todas las aplicaciones Adobe instaladas para que IT SEAT no las desinstale.\r\nAl pulsar en el bot\u00F3n Iniciar, se ir\u00E1n iniciando y cerrando de forma autom\u00E1tica las aplicaciones, sin que tengas que hacer nada.\r\n\nPulsa el bot\u00F3n Iniciar para empezar y ves a tomarte un caf\u00E9, que tarda un rato.");
 		GridBagConstraints gbc_txtpnEstePequeoPrograma = new GridBagConstraints();
 		gbc_txtpnEstePequeoPrograma.gridwidth = 2;
 		gbc_txtpnEstePequeoPrograma.insets = new Insets(5, 5, 5, 5);
