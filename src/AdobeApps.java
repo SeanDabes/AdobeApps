@@ -14,6 +14,9 @@ import javax.swing.text.StyledDocument;
 
 import java.awt.Color;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -28,13 +31,16 @@ import java.awt.Dimension;
 public class AdobeApps {
 	
 	String[] appsname = {
+			"Acrobat Pro DC",
 			"AfterEffects",
 			"Animate",
 			"Audition CC",
 			"Bridge",
+			"Distiller",
 			"Dreamweaver",
 			"Fireworks",
 			"Flash",
+			"Flash Builder",
 			"Fuse",
 			"Illustrator",
 			"InCopy",
@@ -49,13 +55,16 @@ public class AdobeApps {
 	};
 	
 	String[] appspath = {
+			"C:\\Program Files (x86)\\Adobe\\Adobe Acrobat DC\\Acrobat\\Acrobat.exe",
 			"C:\\Program Files\\Adobe\\Adobe After Effects CC 2017\\Support Files\\AfterFX.exe",
 			"C:\\Program Files\\Adobe\\Adobe Animate CC 2017\\Animate.exe",
 			"C:\\Program Files\\Adobe\\Adobe Audition CC 2017\\Adobe Audition CC.exe",
 			"C:\\Program Files\\Adobe\\Adobe Bridge CC 2017\\Bridge.exe",
+			"C:\\Program Files (x86)\\Adobe\\Adobe Acrobat DC\\Acrobat\\acrodist.exe",
 			"C:\\Program Files\\Adobe\\Adobe Dreamweaver CC 2017\\Dreamweaver.exe",
 			"C:\\Program Files (x86)\\Adobe\\Adobe Fireworks CS6\\Fireworks.exe",
 			"C:\\Program Files\\Adobe\\Adobe Flash CC 2015\\Flash.exe",
+			"C:\\Program Files\\Adobe\\Adobe Flash Builder 4.7 (64 Bit)\\FlashBuilder.exe",
 			"C:\\Program Files (x86)\\Adobe\\Adobe Fuse CC (Preview)\\Code\\Build\\Output\\Fuse\\bin\\Release\\Fuse.exe",
 			"C:\\Program Files\\Adobe\\Adobe Illustrator CC 2017\\Support Files\\Contents\\Windows\\Illustrator.exe",
 			"C:\\Program Files\\Adobe\\Adobe InCopy CC 2017\\InCopy.exe",
@@ -70,13 +79,16 @@ public class AdobeApps {
 	};
 	
 	String[] appsfile = {
+			"Acrobat.exe",
 			"AfterFX.exe",
 			"Animate.exe",
 			"Adobe Audition CC.exe",
 			"Bridge.exe",
+			"acrodist.exe",
 			"Dreamweaver.exe",
 			"Fireworks.exe",
 			"Flash.exe",
+			"FlashBuilder.exe",
 			"Fuse.exe",
 			"Illustrator.exe",
 			"InCopy.exe",
@@ -123,6 +135,14 @@ public class AdobeApps {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+        try {
+			UIManager.setLookAndFeel(
+			        UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
