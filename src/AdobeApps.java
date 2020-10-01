@@ -167,6 +167,7 @@ public class AdobeApps {
 	 */
 	public void initialize() {
 		frmmain = new JFrame();
+		frmmain.setAlwaysOnTop(true);
 		frmmain.setMinimumSize(new Dimension(510, 200));
 		frmmain.setMaximumSize(new Dimension(510, 200));
 		frmmain.setResizable(false);
@@ -180,31 +181,30 @@ public class AdobeApps {
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
 		frmmain.getContentPane().setLayout(gridBagLayout);
 		
-		JTextPane txtpnEstePequeoPrograma = new JTextPane();
-		txtpnEstePequeoPrograma.setBackground(SystemColor.control);
-		txtpnEstePequeoPrograma.setEditable(false);
-		txtpnEstePequeoPrograma.setText("Este peque\u00F1o programa inicia todas las aplicaciones Adobe instaladas para que IT SEAT no las desinstale.\r\nAl pulsar en el bot\u00F3n Iniciar, se ir\u00E1n iniciando y cerrando de forma autom\u00E1tica las aplicaciones, sin que tengas que hacer nada.\r\n\nPulsa el bot\u00F3n Iniciar para empezar y ves a tomarte un caf\u00E9, que tarda un rato.");
-		GridBagConstraints gbc_txtpnEstePequeoPrograma = new GridBagConstraints();
-		gbc_txtpnEstePequeoPrograma.gridwidth = 2;
-		gbc_txtpnEstePequeoPrograma.insets = new Insets(5, 5, 5, 5);
-		gbc_txtpnEstePequeoPrograma.fill = GridBagConstraints.BOTH;
-		gbc_txtpnEstePequeoPrograma.gridx = 0;
-		gbc_txtpnEstePequeoPrograma.gridy = 0;
-		frmmain.getContentPane().add(txtpnEstePequeoPrograma, gbc_txtpnEstePequeoPrograma);
+		JTextPane txtpninstrucciones = new JTextPane();
+		txtpninstrucciones.setBackground(SystemColor.control);
+		txtpninstrucciones.setEditable(false);
+		txtpninstrucciones.setText("Este peque\u00F1o programa inicia todas las aplicaciones Adobe instaladas para que IT SEAT no las desinstale.\r\nAl pulsar en el bot\u00F3n Iniciar, se ir\u00E1n iniciando y cerrando de forma autom\u00E1tica las aplicaciones. Sobretodo: NO TOQUES NADA, todo es autom\u00E1tico.\r\n\nPulsa el bot\u00F3n Iniciar para empezar y ves a tomarte un caf\u00E9, que tarda un rato.");
+		GridBagConstraints gbc_txtpninstrucciones = new GridBagConstraints();
+		gbc_txtpninstrucciones.gridwidth = 2;
+		gbc_txtpninstrucciones.insets = new Insets(5, 5, 5, 0);
+		gbc_txtpninstrucciones.fill = GridBagConstraints.BOTH;
+		gbc_txtpninstrucciones.gridx = 0;
+		gbc_txtpninstrucciones.gridy = 0;
+		frmmain.getContentPane().add(txtpninstrucciones, gbc_txtpninstrucciones);
 		
 		JTextPane textPaneLog = new JTextPane();
 		textPaneLog.setBackground(SystemColor.control);
 		textPaneLog.setEditable(false);
 		GridBagConstraints gbc_textPaneLog = new GridBagConstraints();
 		gbc_textPaneLog.gridwidth = 2;
-		gbc_textPaneLog.insets = new Insets(0, 5, 5, 5);
+		gbc_textPaneLog.insets = new Insets(0, 5, 5, 0);
 		gbc_textPaneLog.fill = GridBagConstraints.BOTH;
 		gbc_textPaneLog.gridx = 0;
 		gbc_textPaneLog.gridy = 1;
 		frmmain.getContentPane().add(textPaneLog, gbc_textPaneLog);
 		
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setMaximum(appsname.length);
 		GridBagConstraints gbc_progressBar = new GridBagConstraints();
 		gbc_progressBar.fill = GridBagConstraints.BOTH;
 		gbc_progressBar.insets = new Insets(0, 5, 5, 5);
@@ -215,26 +215,35 @@ public class AdobeApps {
 		JButton btnIniciar = new JButton("Iniciar");
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				startapps(textPaneLog, btnIniciar, progressBar);
+				startapps(textPaneLog, btnIniciar, progressBar, txtpninstrucciones);
 			}
 		});
 		GridBagConstraints gbc_btnIniciar = new GridBagConstraints();
+		gbc_btnIniciar.fill = GridBagConstraints.BOTH;
 		gbc_btnIniciar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnIniciar.gridx = 1;
 		gbc_btnIniciar.gridy = 2;
 		frmmain.getContentPane().add(btnIniciar, gbc_btnIniciar);
 	}
 	
-	private void startapps(JTextPane textPaneLog, JButton btnIniciar, JProgressBar progressBar) {
+	private void startapps(JTextPane textPaneLog, JButton btnIniciar, JProgressBar progressBar, JTextPane txtpninstrucciones) {
 		btnIniciar.setEnabled(false);
+		progressBar.setMaximum(appspath.length);
 		String LogOK = "";
 		String LogKO = "";
 		for (String i : appsname) {
 			File f = new File(appspath[findIndex(appsname, i)]);
 			if(f.exists()) {
-				textPaneLog.setText("");
-				appendtext(textPaneLog, "Iniciando " + i.toString() + "... ", Color.DARK_GRAY);
-				textPaneLog.update(textPaneLog.getGraphics());
+				Thread preinfo = new Thread() {
+					public void run() {
+						textPaneLog.setText("");
+						appendtext(textPaneLog, "Iniciando " + i.toString() + "... ", Color.DARK_GRAY);
+						textPaneLog.update(textPaneLog.getGraphics());
+						txtpninstrucciones.update(txtpninstrucciones.getGraphics());
+						}
+					};
+					preinfo.start();
+					
 					ProcessBuilder process = new ProcessBuilder(appspath[findIndex(appsname, i)]);
 					try {
 						process.start();
@@ -266,9 +275,14 @@ public class AdobeApps {
 				    LogOK = LogOK + "\n - " + i.toString();
 			}
 			else {
-				textPaneLog.setText("");
-				appendtext(textPaneLog, i + " no encontrado, saltando...\n", Color.RED);
-				LogKO = LogKO + "\n - " + i.toString();
+				Thread preinfo = new Thread() {
+					public void run() {
+						textPaneLog.setText("");
+						appendtext(textPaneLog, i + " no encontrado, saltando...\n", Color.RED);
+						}
+					};
+					preinfo.start();
+					LogKO = LogKO + "\n - " + i.toString();
 				try {
 	                Thread.sleep(1000);
 	            } catch (InterruptedException e) {
@@ -276,8 +290,13 @@ public class AdobeApps {
 	            }
 
 			}
-			progressBar.setValue(findIndex(appsname, i) + 1);
-			progressBar.update(progressBar.getGraphics());
+			Thread progress = new Thread() {
+				public void run() {
+					progressBar.setValue(findIndex(appsname, i) + 1);
+					progressBar.update(progressBar.getGraphics());
+					}
+				};
+				progress.start();
 		}
 		
 		if (LogKO == "") {
