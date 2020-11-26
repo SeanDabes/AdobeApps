@@ -1,4 +1,4 @@
-#Mon Oct 05 23:50:04 CEST 2020
+#Tue Nov 17 17:03:56 CET 2020
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse_.eclipseextension/name=C\:\\Program Files\\Adobe\\Adobe Flash Builder 4.7 (64 Bit)\\eclipse\\.eclipseextension
 repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclipse.equinox.p2.core_cache/isSystem=true
 repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclipse.equinox.p2.core_cache/type=org.eclipse.equinox.p2.artifact.repository.simpleRepository
@@ -13,6 +13,7 @@ repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclips
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722/name=Bundle pool
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse_.eclipseextension/version=1
 repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclipse.equinox.p2.core_cache/name=download cache
+repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclipse.equinox.p2.core_cache/suffix=artifacts.xml
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse/version=1.0.0
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722/description=
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse/description=
@@ -22,7 +23,7 @@ repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclips
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722_configuration_org.eclipse.osgi_bundles_256_data_listener_1925729951/version=1.0.0
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse_.eclipseextension/enabled=true
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722/isSystem=true
-repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclipse.equinox.p2.core_cache/version=1
+repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclipse.equinox.p2.core_cache/version=1.0.0
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse/enabled=true
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse_.eclipseextension/provider=
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722_configuration_org.eclipse.osgi_bundles_256_data_listener_1925729951/provider=
@@ -40,6 +41,7 @@ repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(6
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse/type=org.eclipse.equinox.p2.artifact.repository.simpleRepository
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722_configuration_org.eclipse.osgi_bundles_256_data_listener_1925729951/uri=file\:/D\:/USUARIS/ssarda1/Adobe%20Flash%20Builder%204.7/cascaded/349722/configuration/org.eclipse.osgi/bundles/256/data/listener_1925729951/
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722/type=org.eclipse.equinox.p2.artifact.repository.simpleRepository
+repositories/file\:_D\:_USUARIS_ssarda1_Documents_GitHub_AdobeApps_p2_org.eclipse.equinox.p2.core_cache/enabled=true
 repositories/file\:_C\:_Program%20Files_Adobe_Adobe%20Flash%20Builder%204.7%20(64%20Bit)_eclipse/isSystem=true
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722/suffix=artifacts.xml
 repositories/file\:_D\:_USUARIS_ssarda1_Adobe%20Flash%20Builder%204.7_cascaded_349722_configuration_org.eclipse.osgi_bundles_256_data_listener_1925729951/name=dropins
