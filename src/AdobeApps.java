@@ -144,7 +144,7 @@ public class AdobeApps {
 		frmmain.setMinimumSize(new Dimension(510, 200));
 		frmmain.setMaximumSize(new Dimension(510, 200));
 		frmmain.setResizable(false);
-		frmmain.setTitle("Iniciador de aplicaciones Adobe (v2 Final)");
+		frmmain.setTitle("Iniciador de aplicaciones Adobe (2.0.1)");
 		frmmain.setBounds(100, 100, 600, 365);
 		frmmain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -294,6 +294,7 @@ public class AdobeApps {
 			
 			int starttime = time * k;
 			int stoptime = starttime + time;
+			int counter = k+1;
 
 			Thread startapp = new Thread() {
 				@Override
@@ -302,8 +303,8 @@ public class AdobeApps {
 					ScheduledFuture<?> countdown2 = scheduledapp.schedule(new Runnable() {
 						@Override
 						public void run() {
-							appendtext(textPaneLog, "Iniciando " + appname + " (" + apppath + ")" + "\n", Color.BLACK);
-							System.out.println(LocalTime.now().format(dtf) + " - Iniciando " + appname + " (" + apppath + ")");
+							appendtext(textPaneLog, "Iniciando " + appname + " (" + apppath + ") [" + counter + "/" + appsfound.length + "]\n", Color.BLACK);
+							System.out.println(LocalTime.now().format(dtf) + " - Iniciando " + appname + " (" + apppath + ") [" + counter + "/" + appsfound.length + "]");
 							ProcessBuilder process = new ProcessBuilder(apppath);
 							try {
 								process.start();
@@ -330,12 +331,12 @@ public class AdobeApps {
 							try {
 								progressBar.setIndeterminate(false);
 								stopapp.exec("taskkill /F /IM " + "\"" + appexe + "\"");
-								System.out.println(LocalTime.now().format(dtf) + " - Matando " + appname + " (" + appexe + ")");
-								appendtext(textPaneLog, appname + " detenida" + " (" + appexe + ")" + "\n", Color.BLUE);
+								System.out.println(LocalTime.now().format(dtf) + " - Matando " + appname + " (" + appexe + ") [" + counter + "/" + appsfound.length + "]");
+								appendtext(textPaneLog, appname + " detenida" + " (" + appexe + ") [" + counter + "/" + appsfound.length + "]\n", Color.BLUE);
 								countapps++;
 								progressBar.setValue(countapps);
 								if ( countapps == numapps ) {
-									appendtext(textPaneLog, "Proceso finalizado, puedes cerrar la ventana", Color.MAGENTA);
+									appendtext(textPaneLog, "Proceso finalizado, puedes cerrar la ventana.", Color.MAGENTA);
 									txtpninstrucciones2.setVisible(false);
 								}
 							} catch (IOException e) {
