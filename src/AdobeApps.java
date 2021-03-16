@@ -374,32 +374,36 @@ public class AdobeApps {
 
 	private void findapps(String path, JTextPane textPaneLog) {
 		File dir = new File(path.toString());
-		for (File file : dir.listFiles()) {
-			if (file.isDirectory()) {
-				findapps(file.toString(), textPaneLog);
-			} else {
-				for (int l=0; l < appsfile.length; l++) {
-					if (file.toString().endsWith(appsfile[l])) {
-						String appname = appsname[l];
-						appendtext(textPaneLog, appname + " > " + file.toString() + "\n", Color.black);
-						System.out.println(LocalTime.now().format(dtf) + " - Encontrada " + appname + " (" + file.toString() + ")" + " [" + file.getName() + "]");
+		if (dir.listFiles() != null) {
+			for (File file : dir.listFiles()) {
+				if (file.isDirectory()) {
+					findapps(file.toString(), textPaneLog);
+				} else {
+					for (int l=0; l < appsfile.length; l++) {
+						if (file.toString().endsWith(appsfile[l])) {
+							String appname = appsname[l];
+							appendtext(textPaneLog, appname + " > " + file.toString() + "\n", Color.black);
+							System.out.println(LocalTime.now().format(dtf) + " - Encontrada " + appname + " (" + file.toString() + ")" + " [" + file.getName() + "]");
 
-						ArrayList<String> namesfoundList = new ArrayList<String>(Arrays.asList(appsfound));
-						namesfoundList.add(appname);
-						appsfound = namesfoundList.toArray(appsfound);
+							ArrayList<String> namesfoundList = new ArrayList<String>(Arrays.asList(appsfound));
+							namesfoundList.add(appname);
+							appsfound = namesfoundList.toArray(appsfound);
 
-						ArrayList<String> pathsfoundList = new ArrayList<String>(Arrays.asList(pathsfound));
-						pathsfoundList.add(file.toString());
-						pathsfound = pathsfoundList.toArray(pathsfound);
-						
-						ArrayList<String> exesfoundList = new ArrayList<String>(Arrays.asList(exesfound));
-						exesfoundList.add(file.getName());
-						exesfound = exesfoundList.toArray(exesfound);
+							ArrayList<String> pathsfoundList = new ArrayList<String>(Arrays.asList(pathsfound));
+							pathsfoundList.add(file.toString());
+							pathsfound = pathsfoundList.toArray(pathsfound);
 
-						numapps++;
+							ArrayList<String> exesfoundList = new ArrayList<String>(Arrays.asList(exesfound));
+							exesfoundList.add(file.getName());
+							exesfound = exesfoundList.toArray(exesfound);
+
+							numapps++;
+						}
 					}
 				}
 			}
+		} else {
+			appendtext(textPaneLog, "No se han encontrado aplicaciones en " + path + "\n", Color.red);
 		}
 	}
 	
