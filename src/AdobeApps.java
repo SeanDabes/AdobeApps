@@ -144,7 +144,7 @@ public class AdobeApps {
 		frmmain.setMinimumSize(new Dimension(510, 200));
 		frmmain.setMaximumSize(new Dimension(510, 200));
 		frmmain.setResizable(false);
-		frmmain.setTitle("Iniciador de aplicaciones Adobe (2.0.1)");
+		frmmain.setTitle("Iniciador de aplicaciones Adobe (2.0.3)");
 		frmmain.setBounds(100, 100, 600, 365);
 		frmmain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -211,15 +211,8 @@ public class AdobeApps {
 		gbc_btnIniciar.gridx = 1;
 		gbc_btnIniciar.gridy = 1;
 		frmmain.getContentPane().add(btnIniciar, gbc_btnIniciar);
-		btnIniciar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				startapps2(textPaneLog, txtpninstrucciones2, btnIniciar, progressBar, txtpninstrucciones);
-			}
-		});
-
 		
-		startup(textPaneLog, txtpninstrucciones2, btnIniciar, progressBar);
+		startup(textPaneLog, txtpninstrucciones2, btnIniciar, progressBar, txtpninstrucciones);
 		
 		JTextPane txtpnSignature = new JTextPane();
 		txtpnSignature.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -235,7 +228,7 @@ public class AdobeApps {
 		
 		JTextPane txtpnCodename = new JTextPane();
 		txtpnCodename.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		txtpnCodename.setText("codename: Fulgencio");
+		txtpnCodename.setText("codename: Gregorio");
 		txtpnCodename.setEditable(false);
 		txtpnCodename.setBackground(SystemColor.menu);
 		GridBagConstraints gbc_txtpnCodename = new GridBagConstraints();
@@ -244,13 +237,46 @@ public class AdobeApps {
 		gbc_txtpnCodename.gridx = 1;
 		gbc_txtpnCodename.gridy = 4;
 		frmmain.getContentPane().add(txtpnCodename, gbc_txtpnCodename);
+	}
+	
+	public void checkretry(JTextPane textPaneLog, JTextPane txtpninstrucciones2, JButton btnIniciar, JProgressBar progressBar, JTextPane txtpninstrucciones) {
+		if (numapps == 0) {
+			appendtext(textPaneLog, LocalTime.now().format(dtf) + " ==> Se han detectado " + numapps + " aplicaciones." + "\n", Color.BLUE);
+			btnIniciar.setText("Reintentar");
+			btnIniciar.setEnabled(true);
+			btnIniciar.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					startup(textPaneLog, txtpninstrucciones2, btnIniciar, progressBar, txtpninstrucciones);
+				}
+			});
 
+			txtpninstrucciones2.setText("Pulsa el botón Reintentar para volver a probar.");
+			progressBar.setIndeterminate(false);
+			System.out.println(LocalTime.now().format(dtf) + " ==> Se han detectado " + numapps + " aplicaciones.");
+			System.out.println();
+		}
+		if (numapps > 0) {
+			appendtext(textPaneLog, LocalTime.now().format(dtf) + " ==> Se han detectado " + numapps + " aplicaciones." + "\n", Color.BLUE);
+			btnIniciar.setText("Iniciar");
+			btnIniciar.setEnabled(true);
+			btnIniciar.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					startapps2(textPaneLog, txtpninstrucciones2, btnIniciar, progressBar, txtpninstrucciones);
+				}
+			});
+			txtpninstrucciones2.setText("Pulsa el botón Iniciar para empezar.");
+			progressBar.setIndeterminate(false);
+			System.out.println(LocalTime.now().format(dtf) + " ==> Se han detectado " + numapps + " aplicaciones.");
+			System.out.println();
+		}
 	}
 
-	public void startup(JTextPane textPaneLog, JTextPane txtpninstrucciones2, JButton btnIniciar, JProgressBar progressBar) {
+	public void startup(JTextPane textPaneLog, JTextPane txtpninstrucciones2, JButton btnIniciar, JProgressBar progressBar, JTextPane txtpninstrucciones) {
 		txtpninstrucciones2.setText("Detectando aplicaciones...");
 		progressBar.setIndeterminate(true);
-		btnIniciar.setVisible(false);
+		btnIniciar.setEnabled(false);
 		appendtext(textPaneLog, LocalTime.now().format(dtf) + " ==> Detectando aplicaciones, espera..." + "\n", Color.BLUE);
 		System.out.println(LocalTime.now().format(dtf) + " ==> Detectando aplicaciones...");
 		Thread x86 = new Thread() {
@@ -265,14 +291,7 @@ public class AdobeApps {
 			public void run() {
 				findapps("C:\\Program Files\\Adobe", textPaneLog);
 				checkrepeatedapps(textPaneLog);
-				appendtext(textPaneLog, LocalTime.now().format(dtf) + " ==> Se han detectado " + numapps + " aplicaciones." + "\n", Color.BLUE);
-				btnIniciar.setVisible(true);
-				btnIniciar.setText("Iniciar");
-				btnIniciar.setEnabled(true);
-				txtpninstrucciones2.setText("Pulsa el botón Iniciar para empezar.");
-				progressBar.setIndeterminate(false);
-				System.out.println(LocalTime.now().format(dtf) + " ==> Se han detectado " + numapps + " aplicaciones.");
-				System.out.println();
+				checkretry(textPaneLog, txtpninstrucciones2, btnIniciar, progressBar, txtpninstrucciones);
 			}
 		};
 		x64.start();
@@ -283,7 +302,7 @@ public class AdobeApps {
 		progressBar.setVisible(true);
 		appendtext(textPaneLog, LocalTime.now().format(dtf) + " ==> Iniciando aplicaciones..." + "\n", Color.BLUE);
 		System.out.println(LocalTime.now().format(dtf) + " ==> ## Iniciando aplicaciones ##");
-		btnIniciar.setVisible(false);
+		btnIniciar.setEnabled(false);
 		progressBar.setMaximum(numapps);
 		progressBar.setIndeterminate(true);
 		int time = 30;
